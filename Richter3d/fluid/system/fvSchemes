@@ -17,7 +17,8 @@ FoamFile
 ddtSchemes
 {
     //default   Euler;
-    default     backward;
+    //default     backward;
+    default CrankNicolson 0.9; 
 }
 
 gradSchemes
@@ -27,31 +28,30 @@ gradSchemes
 
 divSchemes
 {
-    default         Gauss linear;
+    default         none;
+    div(U)          Gauss linear;
 //    div(phi,U)    Gauss linearUpwind cellLimited Gauss linear 1;
-    div(phi,U)      Gauss linear;
+    div(phi,U)      Gauss filteredLinear2   1   0;
     div(B)          Gauss linear;
     div((nuEff*dev(T(grad(U))))) Gauss linear;
 }
 
 laplacianSchemes
 {
-    default         Gauss linear orthogonal;
-    laplacian(nu,U) Gauss linear skewCorrected 1;
-    laplacian((1|A(U)),p) Gauss linear skewCorrected 1;
+    default                 Gauss   linear  orthogonal;
+    laplacian(nu,U)         Gauss   linear  skewCorrected 1;
+    laplacian((1|A(U)),p)   Gauss   linear  skewCorrected 1;
     laplacian(diffusivity,cellMotionU) Gauss linear skewCorrected 1;
 }
 
 interpolationSchemes
 {
     default             linear;
-    interpolate(y)      linear;
-    interpolate(U)      skewCorrected linear;
 }
 
 snGradSchemes
 {
-    default         skewCorrected 1;
+    default         orthogonal;
 }
 
 fluxRequired

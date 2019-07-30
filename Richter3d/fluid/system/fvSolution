@@ -18,9 +18,10 @@ solvers
 {
     p
     {
-        solver          GAMG;
+        solver          PCG;
+        preconditioner  DIC;
         tolerance       1e-06;
-        relTol          0;
+        relTol          0.05;
         minIter         1;
         maxIter         1000;
         smoother        GaussSeidel;
@@ -65,38 +66,34 @@ solvers
 
     U
     {
-        solver          PBiCG;
+        solver          BICCG; //BiCGStab;
         preconditioner  DILU;
         tolerance       1e-06;
         relTol          0;
-        minIter         1;
     }
 
     k
     {
-        solver          PBiCG;
+        solver          BICCG; //BiCGStab;
         preconditioner  DILU;
         tolerance       1e-06;
         relTol          0;
-        minIter         1;
     }
 
     B
     {
-        solver          PBiCG;
+        solver          BICCG; //BiCGStab;
         preconditioner  DILU;
         tolerance       1e-06;
         relTol          0;
-        minIter         1;
     }
 
     nuTilda
     {
-        solver          PBiCG;
+        solver          BICCG; //BiCGStab;
         preconditioner  DILU;
         tolerance       1e-06;
         relTol          0;
-        minIter         1;
     }
 }
 

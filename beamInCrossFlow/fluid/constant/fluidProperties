@@ -14,9 +14,9 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-fluidSolver RK4Foam;
+RK4fluidSolver RK4Fluid;
 
-icoFluidCoeffs
+RK4FluidCoeffs
 {
     nCorrectors 3;
     nNonOrthogonalCorrectors 1;

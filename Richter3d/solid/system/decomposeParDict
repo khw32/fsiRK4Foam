@@ -10,14 +10,31 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
-    object      transportProperties;
+    object      decomposeParDict;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-transportModel  Newtonian;
+numberOfSubdomains 4;
 
-nu              nu [0 2 -1 0 0 0 0] 1e-3;
+method          metis;
 
-rho             rho [1 -3 0 0 0 0 0] 1000;
+globalFaceZones ( interface-zone );
+
+simpleCoeffs
+{
+    n               (2 2 1);
+    delta           0.001;
+}
+
+metisCoeffs
+{
+}
+
+distributed     no;
+
+roots
+(
+);
+
 
 // ************************************************************************* //

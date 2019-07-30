@@ -1,4 +1,4 @@
-/*--------------------------------*- C++ -*----------------------------------*\
+/*--------------------------------*- C++ -*----------------------------------* \
 | =========                 |                                                 |
 | \\      /  F ield         | foam-extend: Open Source CFD                    |
 |  \\    /   O peration     | Version:     4.0                                |
@@ -10,14 +10,21 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
-    object      transportProperties;
+    object      solidProperties;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-transportModel  Newtonian;
+solidSolver unsTotalLagrangianSolid;
 
-nu              nu [0 2 -1 0 0 0 0] 1e-3;
+unsTotalLagrangianSolidCoeffs
+{
+    nCorrectors 1000;
 
-rho             rho [1 -3 0 0 0 0 0] 1000;
+    convergenceTolerance 1e-7;
+    relConvergenceTolerance 1e-3;
+
+    nonLinear totalLagrangian;
+    debug no;
+}
 
 // ************************************************************************* //

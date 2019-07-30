@@ -10,14 +10,32 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
-    object      transportProperties;
+    object      fvSolution;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-transportModel  Newtonian;
+solvers
+{
+    D
+    {
+        solver          PCG;
+        preconditioner  DIC;
+        tolerance       1e-09;
+        relTol          0.1;
+    }
+}
 
-nu              nu [0 2 -1 0 0 0 0] 1e-3;
+relaxationFactors
+{
+    fields
+    {
+        D 0.5;
+    }
 
-rho             rho [1 -3 0 0 0 0 0] 1000;
+    equations
+    {
+        // D 1;
+    }
+}
 
 // ************************************************************************* //

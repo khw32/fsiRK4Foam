@@ -9,15 +9,53 @@ FoamFile
 {
     version     2.0;
     format      ascii;
-    class       dictionary;
-    object      transportProperties;
+    class       volScalarField;
+    object      p;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-transportModel  Newtonian;
+dimensions      [0 2 -2 0 0 0 0];
 
-nu              nu [0 2 -1 0 0 0 0] 1e-3;
+internalField   uniform 0;
 
-rho             rho [1 -3 0 0 0 0 0] 1000;
+boundaryField
+{
+    interface
+    {
+        type extrapolatedPressure;
+        value uniform 0;
+    }
+    outlet
+    {
+         type fixedValue;
+         value uniform 0;
+    }
+    inlet
+    {
+        type extrapolatedPressure;
+        value uniform 0;
+    }
+    bottom
+    {
+        type extrapolatedPressure;
+        value uniform 0;
+    }
+    top
+    {
+        type extrapolatedPressure;
+        value uniform 0;
+    }
+    nearSide
+    {
+        type extrapolatedPressure;
+        value uniform 0;
+    }
+    farSide
+    {
+        type extrapolatedPressure;
+        value uniform 0;
+    }
+}
+
 
 // ************************************************************************* //

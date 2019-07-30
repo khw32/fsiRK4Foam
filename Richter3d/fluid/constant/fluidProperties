@@ -10,14 +10,29 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
-    object      transportProperties;
+    object      fluidProperties;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-transportModel  Newtonian;
+RK4fluidSolver RK4Fluid;
+// fluidSolver pisoFluid;
 
-nu              nu [0 2 -1 0 0 0 0] 1e-3;
+RK4FluidCoeffs
+{
+    nCorrectors 10;
+    nNonOrthogonalCorrectors 0;
+}
 
-rho             rho [1 -3 0 0 0 0 0] 1000;
+consistentIcoFluidCoeffs
+{
+    nCorrectors 3;
+    nNonOrthogonalCorrectors 1;
+}
+
+pisoFluidCoeffs
+{
+    nCorrectors     8;
+    nNonOrthogonalCorrectors 0;
+}
 
 // ************************************************************************* //

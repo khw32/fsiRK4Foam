@@ -25,5 +25,6 @@ cd fluid
 
 # runApplication $application
 runApplication fsiRK4Foam
+# runApplication fsiFoam
 
 # ----------------------------------------------------------------- end-of-file

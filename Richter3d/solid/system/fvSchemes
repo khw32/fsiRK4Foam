@@ -10,14 +10,54 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
-    object      transportProperties;
+    object      fvSchemes;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-transportModel  Newtonian;
+d2dt2Schemes
+{
+    default none;
+    d2dt2(D) Euler;
+}
 
-nu              nu [0 2 -1 0 0 0 0] 1e-3;
+ddtSchemes
+{
+    default none;
+    ddt(D) Euler;
+}
 
-rho             rho [1 -3 0 0 0 0 0] 1000;
+
+gradSchemes
+{
+    default none;
+    grad(D) leastSquares;
+}
+
+divSchemes
+{
+    default none;
+}
+
+laplacianSchemes
+{
+    default none;
+    laplacian(DD,D) Gauss linear corrected;
+}
+
+snGradSchemes
+{
+    default none;
+    snGrad(D) corrected;
+}
+
+interpolationSchemes
+{
+    default none;
+    interpolate(mu) linear;
+    interpolate(lambda) linear;
+    interpolate(grad(U)) linear;
+
+    interpolate(grad(D)) linear;
+}
 
 // ************************************************************************* //

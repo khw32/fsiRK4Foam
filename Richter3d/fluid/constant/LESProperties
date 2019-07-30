@@ -15,11 +15,13 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-LESModel        oneEqEddy;
+LESModel        Smagorinsky;
+
+turbulence      on;
 
 delta           cubeRootVol;
 
-printCoeffs     off;
+printCoeffs     on;
 
 cubeRootVolCoeffs
 {
